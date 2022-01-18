@@ -18,9 +18,32 @@ namespace Blog_Random
             Console.WriteLine("Random generator tests.");
             Console.WriteLine("_______________________");
             Console.WriteLine("Test 1: Generator RandomComputationalMethods");
-            Test01();
-
+            //Test01();
+            Console.WriteLine("_______________________");
+            Console.WriteLine("Test 2: Generator RandomXorShift");
+            //Test02();
+            Console.WriteLine("_______________________");
+            Console.WriteLine("Test 3: Generator RandomMemory");
+            Test03();
             Console.ReadLine();
+        }
+
+        private static void Test03()
+        {
+            RandomFromSystem rnd = new RandomFromSystem();
+            for (long i = 0; i < GenerationCount; i++)
+            {
+                Console.WriteLine(rnd.RandomLongBetweenInt(0, 100));
+            }
+        }
+
+        private static void Test02()
+        {
+            RandomXorShift rnd = new RandomXorShift();
+            for (long i = 0; i < GenerationCount; i++)
+            {
+                Console.WriteLine(rnd.RandomLongBetweenInt(0, 100));
+            }
         }
 
         static void Test01()
