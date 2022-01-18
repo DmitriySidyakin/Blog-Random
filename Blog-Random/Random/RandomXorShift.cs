@@ -32,7 +32,6 @@ namespace Blog_Random.Random
             _w = (_w ^ (_w >> 19)) ^ (t ^ (t >> 8));
             _seed = (long)_w;
             return _seed;
-
         }
 
         public long RandomLong() => Next();

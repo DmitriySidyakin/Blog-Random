@@ -25,7 +25,7 @@ namespace Blog_Random.Random
             }
 
             _seed = result;
-            return result;
+            return _seed;
         }
 
         public long RandomLong() => Next();
