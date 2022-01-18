@@ -23,7 +23,7 @@ namespace Blog_Random
             Console.WriteLine("Test 2: Generator RandomXorShift");
             //Test02();
             Console.WriteLine("_______________________");
-            Console.WriteLine("Test 3: Generator RandomMemory");
+            Console.WriteLine("Test 3: Generator RandomFromSystem");
             Test03();
             Console.ReadLine();
         }
