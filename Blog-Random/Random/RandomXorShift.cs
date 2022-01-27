@@ -2,7 +2,7 @@
 {
     public class RandomXorShift : Random
     {
-        private ulong _x = 123; // начальные значения могут быть любыми
+        private ulong _x = 123; // начальные значения могут быть другими
         private ulong _y = 456;
         private ulong _z = 789;
         private ulong _w = 768;
