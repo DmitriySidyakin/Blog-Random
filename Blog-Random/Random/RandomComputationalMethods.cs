@@ -4,7 +4,7 @@
     {
         private long _a = 23456781;
         private long _b = 12323456781;
-        private long _mod = 56472311;
+        private long _mod = 56472311456;
 
         public RandomComputationalMethods(long seed)
         {
