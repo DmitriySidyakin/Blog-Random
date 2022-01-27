@@ -3,7 +3,7 @@
     public class RandomComputationalMethods : Random
     {
         private long _a = 23456781;
-        private long _b = long.MaxValue;
+        private long _b = 12323456781;
         private long _mod = 56472311;
 
         public RandomComputationalMethods(long seed)
