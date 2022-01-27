@@ -1,62 +1,28 @@
-﻿using System;
-
-namespace Blog_Random.Random
+﻿namespace Blog_Random.Random
 {
-    public class RandomFromSystem
+    public class RandomFromSystem : Random
     {
-        private long _seed = 0;
+        System.Random random;
 
-        // for byte generation
-        private byte _currentBytePosition = 8;
+        public RandomFromSystem() { random = new System.Random(); _seed = Next(); }
 
-        System.Random random = new System.Random();
-        public RandomFromSystem() { }
+        public RandomFromSystem(int seed) { random = new System.Random(seed); _seed = Next(); }
 
-        private long Next()
+        protected override long Next()
         {
             byte[] rnd = new byte[sizeof(long)];
             random.NextBytes(rnd);
 
             long result = 0;
-            for(byte i = 0; i < sizeof(long); i++)
+            for(int i = sizeof(long) - 1; i >= 0; i--)
             {
-                result <<= sizeof(long) * i;
-                result = result | rnd[i];
+                byte rndByte = rnd[i];
+                result = result ^ rndByte;
+                result <<= i * 8;
             }
 
             _seed = result;
             return _seed;
         }
-
-        public long RandomLong() => Next();
-
-        public byte RandomByte()
-        {
-            if (_currentBytePosition == 8)
-            {
-                Next();
-                _currentBytePosition = 0;
-            }
-
-            byte randomByte = (byte)((_seed >> _currentBytePosition) & 0xFF);
-            _currentBytePosition++;
-            return randomByte;
-        }
-
-        public double RandomDouble()
-        {
-            return BitConverter.ToDouble(new byte[8] { RandomByte(), RandomByte(), RandomByte(), RandomByte(), RandomByte(), RandomByte(), RandomByte(), RandomByte() });
-        }
-
-        public double RandomDoubleBetweenOne()
-        {
-            return BitConverter.ToDouble(new byte[8] { RandomByte(), RandomByte(), RandomByte(), RandomByte(), RandomByte(), RandomByte(), (byte)(RandomByte() & 0b0001_1111), 0 }) * Math.Pow(2, 1023) / 3.9999999999999996;
-        }
-
-        public long RandomLongBetweenInt(int min, int max)
-        {
-            return min + (long)(((long)max - (long)min) * RandomDoubleBetweenOne());
-        }
-
     }
 }
